@@ -12,6 +12,12 @@ app.use(express.urlencoded({ extended: true }))
 const v1 = require('./routes/v1')
 app.use('/v1', v1)
 
+//Source files
+app.use('/src', express.static('views/src'))
+
+//Views
+app.get('/', (req, res)=> res.sendFile(__dirname + '/views/landing.html'))
+
 //Shortened links
 const LinksHandler = require('./models/LinksHandler')
 app.get('/s/:url', async (req, res)=>{
