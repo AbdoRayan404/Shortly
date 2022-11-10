@@ -18,6 +18,7 @@ app.use('/src', express.static('views/src'))
 //Views
 app.get('/', (req, res)=> res.sendFile(__dirname + '/views/landing.html'))
 app.get('/try', (req, res)=> res.sendFile(__dirname + '/views/LCR.html'))
+app.get('/team', (req, res)=> res.sendFile(__dirname + '/views/team.html'))
 
 //Shortened links
 const LinksHandler = require('./models/LinksHandler')
