@@ -67,3 +67,12 @@ li a {
     width: 350px;
     font-size: x-large;
 }
+
+.link {
+    display: inline-block;
+    border: 6px dotted #c03828;
+    margin-top: 25px;
+    padding: 10px;
+    color: white;
+    visibility: hidden;
+}
