@@ -48,21 +48,22 @@ li a {
     color: #c03828;
 }
 
-.form {
+.create_div {
     margin-top: 70px;
     margin-left: 20px;
     text-align: center;
 }
 
-.button {
+.create_button {
     background-color: #c03828;
-    height: 40px;
-    width: 80px;
-    font-size: 19px;
-
+    height: 43px;
+    width: 85px;
+    font-size: 24px;
+    color: #1e2d42;
 }
 
 .text-box {
     height: 40px;
     width: 350px;
+    font-size: x-large;
 }
