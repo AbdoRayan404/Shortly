@@ -4,6 +4,9 @@ const app = express();
 //.env config loading
 require('dotenv').config()
 
+//modules loading
+const pool = require('./models/database')
+
 //Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
