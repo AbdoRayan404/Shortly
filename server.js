@@ -1,33 +1,31 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 
 //.env config loading
-require('dotenv').config()
-
-//modules loading
-const pool = require('./models/database')
+import dotenv from 'dotenv';
+dotenv.config()
 
 //Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 //Routes
-const v1 = require('./routes/v1')
+import {router as v1} from './routes/v1.js';
 app.use('/v1', v1)
 
 //Source files
 app.use('/src', express.static('views/src'))
 
 //Views
-app.get('/', (req, res)=> res.sendFile(__dirname + '/views/landing.html'))
-app.get('/try', (req, res)=> res.sendFile(__dirname + '/views/LCR.html'))
-app.get('/team', (req, res)=> res.sendFile(__dirname + '/views/team.html'))
+app.get('/', (req, res)=> res.sendFile(process.cwd() + '/views/landing.html'))
+app.get('/try', (req, res)=> res.sendFile(process.cwd() + '/views/LCR.html'))
+app.get('/team', (req, res)=> res.sendFile(process.cwd() + '/views/team.html'))
 
 //Shortened links
-const LinksHandler = require('./models/LinksHandler')
+import {inspect} from './models/LinksHandler.js';
 app.get('/s/:url', async (req, res)=>{
     try{
-        let original = await LinksHandler.inspect(req.params.url)
+        let original = await inspect(req.params.url)
 
         if(original){
             res.redirect(original)

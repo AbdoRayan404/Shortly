@@ -1,7 +1,7 @@
 {
   "name": "shortly",
-  "version": "1.0.0",
-  "description": "No-Login link shortener website, Simple clicks to make a shortened link",
+  "version": "2.0.0",
+  "description": "Easy to use link shortener website, Simple clicks to make a shortened link",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -25,5 +25,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  }
+  },
+  "type": "module"
 }

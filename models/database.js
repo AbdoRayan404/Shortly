@@ -1,9 +1,9 @@
-const Pool = require('pg').Pool
+import pg from 'pg';
 
 //configs
 const {POSTGRES_USER, POSTGRES_HOST, POSTGRES_DATABASE_NAME, POSTGRES_PASSWORD, POSTGRES_PORT} = process.env
 
-const pool = new Pool({
+export const pool = new pg.Pool({
     user: POSTGRES_USER,
     host: POSTGRES_HOST,
     database: POSTGRES_DATABASE_NAME,
@@ -26,5 +26,3 @@ pool.query(
     'original varchar NOT NULL, '+
     'clicks integer)'
 )
-
-module.exports = pool
