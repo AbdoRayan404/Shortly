@@ -1,6 +1,8 @@
 * {
     padding: 0%;
-    margin: 0px;
+    margin: 0%;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
 }
 
 body {
@@ -27,6 +29,8 @@ nav {
     text-transform: uppercase;
     padding-left: 40px;
     font-size: 40px;
+    font-weight: 900;
+
 }
 
 nav ul li {
@@ -58,14 +62,17 @@ li a {
     background-color: #c03828;
     height: 43px;
     width: 85px;
-    font-size: 24px;
+    font-size: 20px;
     color: #1e2d42;
+    border-radius: 0 40px 40px 0px;
+
 }
 
 .text-box {
     height: 40px;
     width: 350px;
     font-size: x-large;
+    border-radius: 40px 0px 0px 40px;
 }
 
 .link {

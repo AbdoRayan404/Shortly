@@ -1,6 +1,8 @@
 * {
     padding: 0%;
-    margin: 0px;
+    margin: 0%;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
 }
 
 body {
@@ -27,6 +29,7 @@ nav {
     text-transform: uppercase;
     padding-left: 40px;
     font-size: 40px;
+    font-weight: 900;
 }
 
 nav ul li {
