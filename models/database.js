@@ -16,7 +16,8 @@ pool.query(
     'id bigserial PRIMARY KEY, '+
     'email varchar UNIQUE, '+
     'password varchar NOT NULL, '+
-    'salt varchar NOT NULL) '
+    'salt varchar NOT NULL, '+
+    'token varchar NOT NULL)'
     )
 pool.query(
     'CREATE TABLE IF NOT EXISTS links( '+

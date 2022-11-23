@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/AbdoRayan404/Shortly#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "geoip-country": "^4.1.32",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.8.0",
     "randomstring": "^1.2.3",
     "ua-parser-js": "^1.0.32"
