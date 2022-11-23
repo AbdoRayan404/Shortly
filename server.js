@@ -2,14 +2,13 @@ import express from 'express';
 const app = express();
 
 //.env config loading
-import dotenv from 'dotenv';
-dotenv.config()
+import {} from 'dotenv/config';
 
 //Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-//Routes
+// //Routes
 import {router as v1} from './routes/v1.js';
 app.use('/v1', v1)
 
@@ -22,20 +21,7 @@ app.get('/try', (req, res)=> res.sendFile(process.cwd() + '/views/LCR.html'))
 app.get('/team', (req, res)=> res.sendFile(process.cwd() + '/views/team.html'))
 
 //Shortened links
-import {inspect} from './models/LinksHandler.js';
-app.get('/s/:url', async (req, res)=>{
-    try{
-        let original = await inspect(req.params.url)
-
-        if(original){
-            res.redirect(original)
-        }else{
-            res.sendStatus(400)
-        }
-    }catch(err){
-        console.log(err)
-        res.sendStatus(500)
-    }
-})
+import redirect from './routes/redirect.js'
+app.get('/s/:url', redirect)
 
 app.listen(process.env.PORT || 3000, ()=> console.log('Server is listening on port:', process.env.PORT || 3000))

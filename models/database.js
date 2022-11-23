@@ -26,3 +26,14 @@ pool.query(
     'original varchar NOT NULL, '+
     'clicks integer)'
 )
+
+pool.query(
+    'CREATE TABLE IF NOT EXISTS visits('+
+    'link INTEGER REFERENCES links(id), '+
+    'ip varchar, '+
+    'country varchar, '+
+    'device varchar, '+
+    'browser varchar, '+
+    'os varchar, '+
+    'clickedat Date)'
+    )

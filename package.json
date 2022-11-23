@@ -20,8 +20,10 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "geoip-country": "^4.1.32",
     "pg": "^8.8.0",
-    "randomstring": "^1.2.3"
+    "randomstring": "^1.2.3",
+    "ua-parser-js": "^1.0.32"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

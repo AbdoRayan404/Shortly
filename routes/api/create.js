@@ -1,4 +1,4 @@
-import {create as createLink} from '../../models/LinksHandler.js';
+import {create as createLink} from '../../models/linksController.js';
 import randomstring from 'randomstring';
 
 export async function create(req, res){
