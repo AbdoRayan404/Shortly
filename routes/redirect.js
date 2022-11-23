@@ -2,7 +2,7 @@ import { UAParser } from 'ua-parser-js';
 import geoip from 'geoip-country';
 import {inspect as inspectLink, addVisit} from '../models/linksController.js';
 
-export default async function(req, res){
+export default async function redirect(req, res){
     try{
         let link = await inspectLink(req.params.url)
 
