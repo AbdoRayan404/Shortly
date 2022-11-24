@@ -17,12 +17,12 @@ export default async function login(req, res){
             return res.status(400).json({error: 'email or password is incorrect'})
         }
 
-        let token = jwt.sign({email: user.email, password: user.password}, process.env.JWT_SECRET, {algorithm: 'HS256', expiresIn: '1d'})
-        let refreshToken = jwt.sign({email: user.email, password: user.password}, process.env.JWT_SECRET, {algorithm: 'HS256'})
+        let token = jwt.sign({email: user.email, password: user.password}, process.env.JWT_SECRET, {algorithm: 'HS256', expiresIn: '30s'})
+        let refreshToken = jwt.sign({email: user.email, password: user.password}, process.env.JWT_REFRESH_SECRET, {algorithm: 'HS256'})
 
         await updateToken(user.email, refreshToken)
 
-        res.setHeader('set-cookie', [`JWT_TOKEN=${token}; httponly`])
+        res.setHeader('set-cookie', [`JWT_TOKEN=${token}; max-age=86400; httponly; samesite=lax; path=/`])
         res.json({ refreshToken })
     }catch(err){
         console.log(err)

@@ -1,10 +1,13 @@
 import { inspectToken } from '../../models/linksController.js';
 import jwt from 'jsonwebtoken';
 
+/**
+ * Creates new temporary JWT token using the Refresh token
+*/
 export default async function token(req, res){
     try{
         try{
-            var verified = jwt.verify(req.body.token, process.env.JWT_SECRET, {})
+            var verified = jwt.verify(req.body.token, process.env.JWT_REFRESH_SECRET, {})
         }catch(err){
             var verified = null
         }
