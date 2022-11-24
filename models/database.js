@@ -11,30 +11,30 @@ export const pool = new pg.Pool({
 })
 
 //TABLES creation
-pool.query(
+await pool.query(
     'CREATE TABLE IF NOT EXISTS users( '+
-    'id bigserial PRIMARY KEY, '+
-    'email varchar UNIQUE, '+
+    'email varchar PRIMARY KEY, '+
     'password varchar NOT NULL, '+
     'salt varchar NOT NULL, '+
-    'token varchar NOT NULL)'
+    'token varchar, '+
+    'created_at date NOT NULL )'
     )
-pool.query(
+await pool.query(
     'CREATE TABLE IF NOT EXISTS links( '+
-    'id bigserial PRIMARY KEY, '+
-    'owned_by integer REFERENCES users(id), '+
-    'shortened varchar NOT NULL, '+
+    'shortened varchar NOT NULL PRIMARY KEY, '+
     'original varchar NOT NULL, '+
-    'clicks integer)'
+    'owned_by varchar REFERENCES users(email) NOT NULL, '+
+    'created_at date NOT NULL )'
 )
 
-pool.query(
+await pool.query(
     'CREATE TABLE IF NOT EXISTS visits('+
-    'link INTEGER REFERENCES links(id), '+
+    'id bigserial PRIMARY KEY, '+
+    'link varchar REFERENCES links(shortened) NOT NULL, '+
+    'visited_at date NOT NULL, '+
     'ip varchar, '+
     'country varchar, '+
     'device varchar, '+
     'browser varchar, '+
-    'os varchar, '+
-    'clickedat Date)'
+    'os varchar )'
     )

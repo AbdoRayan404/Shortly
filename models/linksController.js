@@ -27,7 +27,7 @@ export async function updateToken(email, token){
  * @param {String} salt - password salt
 */
 export async function createUser(email, password, salt){
-    await pool.query('INSERT INTO users(email, password, salt) VALUES($1, $2, $3)', [email, password, salt])
+    await pool.query('INSERT INTO users(email, password, salt, created_at) VALUES($1, $2, $3, $4)', [email, password, salt, new Date(Date.now()).toDateString()])
 }
 
 
@@ -44,11 +44,12 @@ export async function inspectUser(email){
 
 /**
  * Creates new Link in the database
+ * @param {String} userEmail - user's email
  * @param {String} shortened - the shortened version
  * @param {String} original - the original version of the url
 */
-export async function create(shortened, original){
-    const link = await pool.query('INSERT INTO links(shortened, original) VALUES($1, $2)', [shortened, original])
+export async function create(userEmail, shortened, original){
+    const link = await pool.query('INSERT INTO links(owned_by, shortened, original, created_at) VALUES($1, $2, $3, $4)', [userEmail, shortened, original, new Date(Date.now()).toDateString()])
 
     if(link.rowCount == 0){
         throw new Error('was not able to create new link', { cause: 'LinksHandler' })
