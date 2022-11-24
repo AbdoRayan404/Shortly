@@ -1,4 +1,4 @@
-import {create as createLink} from '../../models/linksController.js';
+import {createLink} from '../../../models/linksController.js';
 import randomstring from 'randomstring';
 
 export async function create(req, res){
@@ -15,7 +15,7 @@ export async function create(req, res){
 
         let shortened = randomstring.generate(5)
 
-        await createLink(shortened, req.body.url)
+        await createLink(req.body.decoded.email, shortened, req.body.url)
 
         res.json({ shortened: shortened, original: req.body.url })
     }catch(err){

@@ -1,4 +1,4 @@
-import {inspectUser, createUser} from '../../models/linksController.js';
+import {inspectUser, createUser} from '../../../models/usersContrller.js';
 import bcrypt from 'bcrypt';
 
 export default async function register(req, res){
