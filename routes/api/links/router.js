@@ -11,7 +11,7 @@ import jwtValidate from '../../middlewares/tokenValidate.js'
 
 router
     .post('/create', jwtValidate, create)
-    .post('/inspect', jwtValidate, inspect)
+    .get('/inspect', jwtValidate, inspect)
     .post('/visits', jwtValidate, visits)
 
 export default router;
