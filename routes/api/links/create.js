@@ -1,7 +1,7 @@
 import {createLink} from '../../../models/linksController.js';
 import randomstring from 'randomstring';
 
-export async function create(req, res){
+export default async function create(req, res){
     try{
         let regex = /^((https:\/\/)|(www\.)).*\..*$/g
 

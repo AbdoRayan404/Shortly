@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router()
 
 //endpoints
-import {create} from './create.js';
+import create from './create.js';
 import inspect from './inspect.js'
 import visits from './visits.js'
 
