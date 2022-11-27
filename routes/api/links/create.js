@@ -1,7 +1,7 @@
-const LinksHandler = require('../../models/LinksHandler')
-const randomstring = require('randomstring')
+import {createLink} from '../../../models/linksController.js';
+import randomstring from 'randomstring';
 
-async function create(req, res){
+export default async function create(req, res){
     try{
         let regex = /^((https:\/\/)|(www\.)).*\..*$/g
 
@@ -15,7 +15,7 @@ async function create(req, res){
 
         let shortened = randomstring.generate(5)
 
-        await LinksHandler.create(shortened, req.body.url)
+        await createLink(req.body.decoded.email, shortened, req.body.url)
 
         res.json({ shortened: shortened, original: req.body.url })
     }catch(err){
@@ -23,5 +23,3 @@ async function create(req, res){
         res.sendStatus(500)
     }
 }
-
-module.exports = create

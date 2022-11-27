@@ -1,40 +1,29 @@
-const express = require('express');
+import express from 'express';
+import cookieParser from 'cookie-parser'
 const app = express();
 
 //.env config loading
-require('dotenv').config()
+import {} from 'dotenv/config';
 
 //Middlewares
 app.use(express.json())
+app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
 
-//Routes
-const v1 = require('./routes/v1')
-app.use('/v1', v1)
+// //Routes
+import {router as v2} from './routes/v2.js';
+app.use('/v2', v2)
 
 //Source files
 app.use('/src', express.static('views/src'))
 
 //Views
-app.get('/', (req, res)=> res.sendFile(__dirname + '/views/landing.html'))
-app.get('/try', (req, res)=> res.sendFile(__dirname + '/views/LCR.html'))
-app.get('/team', (req, res)=> res.sendFile(__dirname + '/views/team.html'))
+app.get('/', (req, res)=> res.sendFile(process.cwd() + '/views/landing.html'))
+app.get('/try', (req, res)=> res.sendFile(process.cwd() + '/views/LCR.html'))
+app.get('/team', (req, res)=> res.sendFile(process.cwd() + '/views/team.html'))
 
 //Shortened links
-const LinksHandler = require('./models/LinksHandler')
-app.get('/s/:url', async (req, res)=>{
-    try{
-        let original = await LinksHandler.inspect(req.params.url)
-
-        if(original){
-            res.redirect(original)
-        }else{
-            res.sendStatus(400)
-        }
-    }catch(err){
-        console.log(err)
-        res.sendStatus(500)
-    }
-})
+import redirect from './routes/redirect.js'
+app.get('/s/:url', redirect)
 
 app.listen(process.env.PORT || 3000, ()=> console.log('Server is listening on port:', process.env.PORT || 3000))

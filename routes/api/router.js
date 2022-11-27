@@ -1,10 +1,10 @@
-const express = require('express')
-const router = express.Router()
+import express from 'express';
+export const router = express.Router()
 
-//endpoints
-const create = require('./create')
+//api routers
+import usersRouter from './users/router.js'
+import linksRouter from './links/router.js'
 
 router
-    .post('/links/create', create)
-
-module.exports = router
+    .use('/users', usersRouter)
+    .use('/links', linksRouter)
