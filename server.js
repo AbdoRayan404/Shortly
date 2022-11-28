@@ -19,6 +19,8 @@ app.use('/src', express.static('views/src'))
 
 //Views
 app.get('/', (req, res)=> res.sendFile(process.cwd() + '/views/landing.html'))
+app.get('/login', (req, res)=> res.sendFile(process.cwd() + '/views/login.html'))
+app.get('/register', (req, res)=> res.sendFile(process.cwd() + '/views/reg.html'))
 app.get('/try', (req, res)=> res.sendFile(process.cwd() + '/views/LCR.html'))
 app.get('/team', (req, res)=> res.sendFile(process.cwd() + '/views/team.html'))
 
