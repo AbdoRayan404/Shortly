@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Shortly</title>
+  </head>
+
+  <!-- Header -->
+
+  <body>
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">SHORTLY</a>
+        <ul>
+          <li><a href="/">Home Page</a></li>
+          <li><a href="/try">Try Now</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Login Box -->
+
+    <div class="form-box">
+      <!-- form header -->
+      <h1>Log-In</h1>
+      <!-- form elements group container -->
+      <form class="input-group">
+        <input
+          type="email"
+          class="input-field"
+          placeholder="example@gmail.com"
+        />
+        <input
+          type="password"
+          class="input-field"
+          pattern=".{8,}"
+          title="Please write 8 characters password"
+          placeholder="Write a strong password"
+          required
+        />
+        <button type="submit" class="submit-button">Sign-In</button>
+        <button type="submit" class="submit-button">
+          Dont have account yet? Sign-Up.
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
