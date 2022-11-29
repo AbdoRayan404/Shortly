@@ -17,13 +17,18 @@ async function login(){
         }
         )
 
-    let responseMessage = await response.text()
+    
 
     if(response.status == 200){
+        let responseObject = await response.json()
+        localStorage.setItem('Refresh_Token', responseObject.refreshToken)
+
         link_button.style.margin = '5px auto'
         response_message.innerHTML = 'Logged in successfully.'
         response_message.style.color = 'green'
     }else if(response.status == 400){
+        let responseMessage = await response.text()
+
         link_button.style.margin = '5px auto'
         response_message.innerHTML = responseMessage
         response_message.style.color = 'red'
