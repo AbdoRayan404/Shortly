@@ -94,7 +94,10 @@ li a {
   display: block;
   padding: 10px 30px;
   border-radius: 30px;
-  margin: 30px auto;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
   cursor: pointer;
   width: 85%;
 }
@@ -117,4 +120,8 @@ li a {
   width: 85%;
   font-size: small;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+#response-message {
+  text-align: center;
 }
