@@ -7,7 +7,8 @@
 
 
 body {
-    background-color: #FFFFFF;
+    background: linear-gradient(#2A9D8F, #2B6253);
+    height: 100vh;
     background-size: cover;
     background-position-y: 60px;
 }
@@ -51,7 +52,8 @@ li a {
     margin-top: 150px;
     text-align: center;
     font-size: 80px;
-    color: #2A9D8F;
+    /* color: #2A9D8F; */
+    color: #FFFFFF;
 }
 
 .create_div {
@@ -70,6 +72,7 @@ li a {
     font-size: 20px;
     color: #1e2d42;
     border-radius: 0 40px 40px 0px;
+    cursor: pointer;
 
 }
 
@@ -77,8 +80,11 @@ li a {
     font-size: 20px;
     border-radius: 40px 0px 0px 40px;
     border-right: none;
+    border-color: black;
     width: 400px;
     height: 40px;
+    padding: 0px 15px;
+    outline: none;
 }
 
 .link {
