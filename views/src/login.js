@@ -26,6 +26,8 @@ async function login(){
         link_button.style.margin = '5px auto'
         response_message.innerHTML = 'Logged in successfully.'
         response_message.style.color = 'green'
+
+        setTimeout(redirect, 400)
     }else if(response.status == 400){
         let responseMessage = await response.text()
 
@@ -38,4 +40,8 @@ async function login(){
         response_message.style.color = 'red'
     }
     return undefined
+}
+
+function redirect(){
+    window.location.href = '/'
 }
