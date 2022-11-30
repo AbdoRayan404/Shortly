@@ -40,3 +40,13 @@ export async function inspectUser(email){
 
     return user.rows[0]
 }
+
+/**
+ * Inserts new feedback in the feedback table
+ * @param {String} name - name of the feedback
+ * @param {String} email - email of the feedback sender
+ * @param {String} subject - feedback subject
+*/
+export async function addFeedback(name, email, subject){
+    await pool.query('INSERT INTO feedbacks(name, email, subject) VALUES($1, $2, $3)', [name, email, subject])
+}

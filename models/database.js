@@ -38,3 +38,11 @@ await pool.query(
     'browser varchar, '+
     'os varchar )'
     )
+
+await pool.query(
+    'CREATE TABLE IF NOT EXISTS feedbacks('+
+    'id bigserial PRIMARY KEY, '+
+    'name varchar, '+
+    'email varchar, '+
+    'subject varchar)'
+)
