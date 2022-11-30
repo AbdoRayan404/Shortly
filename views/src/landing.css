@@ -72,21 +72,28 @@ li a {
     width: 500px;
 }
 
-.content .text button {
+.text a p {
     background: linear-gradient(to left, #2b6253, #2A9D8F 90%);
     border-radius: 20px;
     border: 1px solid;
-    color: #FFFFFF;
     margin-top: 10px;
     transition: 0.5s;
     font-size: 40px;
     cursor: pointer;
     outline: none;
     width: 200px;
+    border-color: transparent;
+    text-align: center;
+    color: #FFFFFF;
 }
 
-.content button:hover {
+.text a {
+    text-decoration: none;
+}
+
+.text a p:hover {
     background: transparent;
+    border: 1px solid;
     color: black;
 }
 
