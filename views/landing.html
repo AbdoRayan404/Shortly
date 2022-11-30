@@ -46,17 +46,17 @@
 
     <div class="content-two">
       <div class="contact-us">
-        <h1>Contact Us</h1>
-        <form action="">
+        <h1 id="contact-us-h1">Contact Us</h1>
+        <form action="javascript:sendFeedback();" id="contact-us-form">
           <div>
-            <input type="text" placeholder="Name" required />
+            <input id="name-feedback" type="text" placeholder="Name" required />
           </div>
           <div>
-            <input type="email" placeholder="Email" />
+            <input id="email-feedback" type="email" placeholder="Email" />
           </div>
           <div class="comment">
             <textarea
-              id="subject"
+              id="subject-feedback"
               name="subject"
               required
               placeholder="Leave a Feedback or a Comment here.."
