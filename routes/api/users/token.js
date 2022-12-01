@@ -7,12 +7,8 @@ import jwt from 'jsonwebtoken';
 export default async function token(req, res){
     try{
         try{
-            var verified = jwt.verify(req.body.token, process.env.JWT_REFRESH_SECRET)
+            jwt.verify(req.body.token, process.env.JWT_REFRESH_SECRET)
         }catch(err){
-            var verified = null
-        }
-        
-        if(!verified){
             return res.status(400).json({ error: 'token is invalid' })
         }
 

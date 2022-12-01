@@ -1,8 +1,9 @@
 import {pool} from './database.js';
 
 /**
- * Fetch a row using token
+ * Fetch the data of a specific user's account using JWT-Token
  * @param {String} token - user's token
+ * @param {Object} - user object
 */
 export async function inspectToken(token){
     let data = await pool.query('SELECT * FROM users WHERE token = $1', [token])
@@ -10,14 +11,15 @@ export async function inspectToken(token){
     return data.rows[0]
 }
 
-
 /**
- * Updates a specific user's token
- * @param {String} email - user's email
- * @param {String} token - JWT token
+ * Fetch the data of a specific user's account using email
+ * @param {String} email - email of the account
+ * @param {Object} - user object
 */
-export async function updateToken(email, token){
-    await pool.query('UPDATE users SET token = $1 WHERE email = $2', [token, email])
+export async function inspectUser(email){
+    const user = await pool.query('SELECT * FROM users WHERE email = $1', [email])
+
+    return user.rows[0]
 }
 
 /**
@@ -30,15 +32,13 @@ export async function createUser(email, password, salt){
     await pool.query('INSERT INTO users(email, password, salt, created_at) VALUES($1, $2, $3, $4)', [email, password, salt, new Date(Date.now()).toDateString()])
 }
 
-
 /**
- * Fetch the data of a specific user's account using email
- * @param {String} email - email of the account
+ * Updates a specific user's token
+ * @param {String} email - user's email
+ * @param {String} token - JWT token
 */
-export async function inspectUser(email){
-    const user = await pool.query('SELECT * FROM users WHERE email = $1', [email])
-
-    return user.rows[0]
+export async function updateToken(email, token){
+    await pool.query('UPDATE users SET token = $1 WHERE email = $2', [token, email])
 }
 
 /**

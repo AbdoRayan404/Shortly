@@ -7,16 +7,13 @@ import {pool} from './database.js';
  * @param {String} original - the original version of the url
 */
 export async function createLink(userEmail, shortened, original){
-    const link = await pool.query('INSERT INTO links(owned_by, shortened, original, created_at) VALUES($1, $2, $3, $4)', [userEmail, shortened, original, new Date(Date.now()).toDateString()])
-
-    if(link.rowCount == 0){
-        throw new Error('was not able to create new link', { cause: 'LinksHandler' })
-    }
+    await pool.query('INSERT INTO links(owned_by, shortened, original, created_at) VALUES($1, $2, $3, $4)', [userEmail, shortened, original, new Date(Date.now()).toDateString()])
 }
 
 /**
  * Fetch the data of a link using shortened code
  * @param {String} shortened - the shortened code
+ * @param {Object} - link object
 */
 export async function inspectLink(shortened){
     const link = await pool.query('SELECT * FROM links WHERE shortened = $1', [shortened])
@@ -27,6 +24,7 @@ export async function inspectLink(shortened){
 /**
  * Fetch all links associated with a specific user, NOTE: links object will include visits count
  * @param {String} email - the user email
+ * @param {Object[]} - link objects
 */
 export async function inspectLinksByEmail(email){
     const links = await pool.query(
@@ -42,6 +40,7 @@ export async function inspectLinksByEmail(email){
 /**
  * Fetch all visits data associated with a specific shortened url
  * @param {String} shortened - shortened url code
+ * @param {Object} - contains statistics array & timestamps array
 */
 export async function inspectVisits(shortened){
     const statistics = await pool.query(
@@ -65,9 +64,10 @@ export async function inspectVisits(shortened){
 }
 
 /**
- * Return true if user own a specific link, false if not
+ * Check if a user owns the shortened url specified
  * @param {String} email - user's email
  * @param {String} shortened - shortened url code
+ * @return {Boolean} - yes or no
 */
 export async function doesOwn(email, shortened){
     const link = await pool.query('SELECT original FROM links WHERE owned_by = $1 AND shortened = $2', [email, shortened])
@@ -81,18 +81,12 @@ export async function doesOwn(email, shortened){
 /**
  * Inserts a visit to a specific link in the visits table
  * @param {String} shortened - the shortened code
- * @param {String} ip - visit ip
- * @param {String} country - visit country
- * @param {String} device - visit device
- * @param {String} browser - visit browser
- * @param {String} os - visit operating system
- * @param {String} referer - the referer site
- * @param {Date} visitedAt - visit date
+ * @param {Object} details - ip, visit date, headers data, user agent, country.
 */
-export async function addVisit(shortened, ip, country = 'unknown', device = 'unknown', browser = 'unknown', os = 'unknown', referer = 'unknown', visitedAt){
-    const visit = await pool.query(
-        'INSERT INTO visits(link, ip, country, device, browser, os, visited_at, referer) '+
+export async function addVisit(shortened,  details){
+    await pool.query(
+        'INSERT INTO visits(link, ip, visited_at, country, device, browser, os, referer) '+
         'VALUES($1, $2, $3, $4, $5, $6, $7, $8)', 
-        [shortened, ip, country, device, browser, os, visitedAt, referer]
+        [shortened, details.ip, details.date, details.country, details.device, details.browser, details.os, details.referer]
         )
 }

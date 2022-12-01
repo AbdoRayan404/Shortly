@@ -6,7 +6,7 @@ button.addEventListener('click', create)
 
 async function create(){
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/v1/api/links/create', true);
+    xhr.open("POST", '/v2/api/links/create', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         url: text.value

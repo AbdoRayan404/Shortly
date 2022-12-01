@@ -3,7 +3,7 @@ import { inspectVisits, doesOwn } from "../../../models/linksController.js";
 export default async function visits(req, res){
     try{
         let isOwned = await doesOwn(req.body.decoded.email, req.body.link)
-        if(isOwned == false){
+        if(!isOwned){
             return res.sendStatus(403)
         }
         
