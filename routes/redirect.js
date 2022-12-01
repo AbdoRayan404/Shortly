@@ -10,9 +10,9 @@ export default async function redirect(req, res){
             res.redirect(link.original)
             let user = new UAParser(req.headers['user-agent']);
             let lookup = geoip.lookup(req.ip);
-            let country = lookup ? lookup.country : 'Unknown'
+            let country = lookup ? lookup.country : undefined
             
-            await addVisit(req.params.url, req.ip, country, user.getDevice().name, user.getBrowser().name, user.getOS().name, new Date(Date.now()).toDateString())
+            await addVisit(req.params.url, req.ip, country, user.getDevice().name, user.getBrowser().name, user.getOS().name, new Date(Date.now()).toUTCString())
         }else{
             res.sendStatus(400)
         }

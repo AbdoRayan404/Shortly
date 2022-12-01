@@ -76,7 +76,7 @@ export async function doesOwn(email, shortened){
  * @param {String} os - visit operating system
  * @param {Date} visitedAt - visit date, default is now()
 */
-export async function addVisit(shortened, ip, country, device, browser, os, visitedAt = new Date(Date.now()).toDateString()){
+export async function addVisit(shortened, ip, country = 'unknown', device = 'unknown', browser = 'unknown', os = 'unknown', visitedAt = new Date(Date.now()).toUTCString()){
     const visit = await pool.query(
         'INSERT INTO visits(link, ip, country, device, browser, os, visited_at) '+
         'VALUES($1, $2, $3, $4, $5, $6, $7)', 
