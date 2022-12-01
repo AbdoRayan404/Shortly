@@ -36,7 +36,8 @@ await pool.query(
     'country varchar, '+
     'device varchar, '+
     'browser varchar, '+
-    'os varchar )'
+    'os varchar, '+
+    'referer varchar )'
     )
 
 await pool.query(

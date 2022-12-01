@@ -51,7 +51,9 @@ export async function inspectVisits(shortened){
         'UNION ALL '+
         'SELECT \'browser\' AS Type, browser AS Value, count(*) AS visits from visits WHERE link = $1 GROUP BY browser '+
         'UNION ALL '+
-        'SELECT \'device\' AS Type, device AS Value, count(*) AS visits from visits WHERE link = $1 GROUP BY device ', 
+        'SELECT \'device\' AS Type, device AS Value, count(*) AS visits from visits WHERE link = $1 GROUP BY device '+
+        'UNION ALL '+
+        'SELECT \'referer\' AS Type, referer AS Value, count(*) AS visits from visits WHERE link = $1 GROUP BY referer ',
         [shortened]
     )
 
@@ -84,12 +86,13 @@ export async function doesOwn(email, shortened){
  * @param {String} device - visit device
  * @param {String} browser - visit browser
  * @param {String} os - visit operating system
+ * @param {String} referer - the referer site
  * @param {Date} visitedAt - visit date
 */
-export async function addVisit(shortened, ip, country = 'unknown', device = 'unknown', browser = 'unknown', os = 'unknown', visitedAt){
+export async function addVisit(shortened, ip, country = 'unknown', device = 'unknown', browser = 'unknown', os = 'unknown', referer = 'unknown', visitedAt){
     const visit = await pool.query(
-        'INSERT INTO visits(link, ip, country, device, browser, os, visited_at) '+
-        'VALUES($1, $2, $3, $4, $5, $6, $7)', 
-        [shortened, ip, country, device, browser, os, visitedAt]
+        'INSERT INTO visits(link, ip, country, device, browser, os, visited_at, referer) '+
+        'VALUES($1, $2, $3, $4, $5, $6, $7, $8)', 
+        [shortened, ip, country, device, browser, os, visitedAt, referer]
         )
 }
