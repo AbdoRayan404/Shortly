@@ -44,12 +44,22 @@ export async function inspectLinksByEmail(email){
  * @param {String} shortened - shortened url code
 */
 export async function inspectVisits(shortened){
-    const visits = await pool.query(
-        'SELECT visits.country, visits.device, visits.browser, visits.os, visits.visited_at FROM visits '+
-        'WHERE visits.link = $1',
-        [shortened])
+    const statistics = await pool.query(
+        'SELECT \'os\' AS Type, os AS Value, count(*) AS visits from visits WHERE link = $1 GROUP BY os '+
+        'UNION ALL '+
+        'SELECT \'country\' AS Type, country AS Value, count(*) AS visits from visits WHERE link = $1 GROUP BY country '+
+        'UNION ALL '+
+        'SELECT \'browser\' AS Type, browser AS Value, count(*) AS visits from visits WHERE link = $1 GROUP BY browser '+
+        'UNION ALL '+
+        'SELECT \'device\' AS Type, device AS Value, count(*) AS visits from visits WHERE link = $1 GROUP BY device ', 
+        [shortened]
+    )
 
-    return visits.rows
+    const timestamps = await pool.query(
+        'SELECT visited_at, count(*) AS visists FROM visits WHERE link = $1 GROUP BY visited_at',[shortened]
+    )
+
+    return {statistics: statistics.rows, timestamps: timestamps.rows}
 }
 
 /**
@@ -74,9 +84,9 @@ export async function doesOwn(email, shortened){
  * @param {String} device - visit device
  * @param {String} browser - visit browser
  * @param {String} os - visit operating system
- * @param {Date} visitedAt - visit date, default is now()
+ * @param {Date} visitedAt - visit date
 */
-export async function addVisit(shortened, ip, country = 'unknown', device = 'unknown', browser = 'unknown', os = 'unknown', visitedAt = new Date(Date.now()).toUTCString()){
+export async function addVisit(shortened, ip, country = 'unknown', device = 'unknown', browser = 'unknown', os = 'unknown', visitedAt){
     const visit = await pool.query(
         'INSERT INTO visits(link, ip, country, device, browser, os, visited_at) '+
         'VALUES($1, $2, $3, $4, $5, $6, $7)', 
