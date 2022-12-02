@@ -4,6 +4,10 @@ import jwt from 'jsonwebtoken';
 
 export default async function login(req, res){
     try{
+        if(!req.body.email || !req.body.password){
+            return res.status(400).send('You should provice email and password')
+        }
+
         let user = await inspectUser(req.body.email)
 
         if(!user){

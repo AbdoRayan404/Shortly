@@ -22,16 +22,14 @@ export async function inspectLink(shortened){
 }
 
 /**
- * Fetch all links associated with a specific user, NOTE: links object will include visits count
+ * Fetch all links associated with a specific user
  * @param {String} email - the user email
  * @param {Object[]} - link objects
 */
 export async function inspectLinksByEmail(email){
     const links = await pool.query(
-        'SELECT count(v.link)::INTEGER as visits, l.original, l.shortened, l.created_at FROM links l '+
-        'JOIN visits v ON v."link" = l.shortened '+
-        'WHERE l.owned_by = $1'+
-        'GROUP BY l.original, l.shortened, l.created_at',
+        'SELECT original, shortened, created_at FROM links '+
+        'WHERE owned_by = $1',
         [email])
 
     return links.rows
