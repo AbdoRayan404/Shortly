@@ -99,7 +99,7 @@ li a {
     color: black;
     margin: 25px auto;
     height: fit-content;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 .links-container {
@@ -109,7 +109,7 @@ li a {
     margin: 10px;
 }
 
-.links-group .monitor {
+.links-group .monitor-button {
     text-decoration: none;
     color: #2A9D8F;
     background-color: #cae6e2;
