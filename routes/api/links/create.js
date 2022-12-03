@@ -3,9 +3,7 @@ import randomstring from 'randomstring';
 
 export default async function create(req, res){
     try{
-        let regex = /^((https:\/\/)|(www\.)).*\..*$/g
-
-        if(regex.test(req.body.url) == false){
+        if(/^((https:\/\/)|(www\.)).*\..*$/g.test(req.body.url) == false){
             return res.sendStatus(400)
         }
 

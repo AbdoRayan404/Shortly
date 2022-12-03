@@ -31,10 +31,19 @@ await pool.query(
     'CREATE TABLE IF NOT EXISTS visits('+
     'id bigserial PRIMARY KEY, '+
     'link varchar REFERENCES links(shortened) NOT NULL, '+
-    'visited_at date NOT NULL, '+
+    'visited_at timestamp NOT NULL, '+
     'ip varchar, '+
     'country varchar, '+
     'device varchar, '+
     'browser varchar, '+
-    'os varchar )'
+    'os varchar, '+
+    'referer varchar )'
     )
+
+await pool.query(
+    'CREATE TABLE IF NOT EXISTS feedbacks('+
+    'id bigserial PRIMARY KEY, '+
+    'name varchar, '+
+    'email varchar, '+
+    'subject varchar)'
+)

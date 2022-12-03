@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Shortly</title>
+  </head>
+
+  <!-- Header -->
+
+  <body>
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">SHORTLY</a>
+        <ul>
+          <li><a href="/">Home</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Login Box -->
+
+    <div class="form-box">
+      <!-- form header -->
+      <h1>Log-In</h1>
+      <!-- form elements group container -->
+      <form class="input-group" action="javascript:login();">
+        <input
+          type="email"
+          class="input-field"
+          id="email-input"
+          placeholder="example@gmail.com"
+        />
+        <input
+          type="password"
+          class="input-field"
+          id="password-input"
+          pattern=".{8,}"
+          title="Please write 8 characters password"
+          placeholder="Write a strong password"
+          required
+        />
+        <button type="submit" class="submit-button">Sign-In</button>
+        <p id="response-message"></p>
+        <div onclick="location.href='/register'" class="link-button">Dont have account yet? Sign-Up</div>
+      </form>
+
+      <script src="src/login.js"></script>
+    </div>
+  </body>
+</html>

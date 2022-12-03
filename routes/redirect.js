@@ -8,11 +8,21 @@ export default async function redirect(req, res){
 
         if(link){
             res.redirect(link.original)
-            let user = new UAParser(req.headers['user-agent']);
+
+            let userAgent = new UAParser(req.headers['user-agent']);
+            let device = userAgent.getDevice().name
+            let browser = userAgent.getBrowser().name
+            let os = userAgent.getOS().name
+
+            let referer = req.headers.referer
+
             let lookup = geoip.lookup(req.ip);
-            let country = lookup ? lookup.country : 'Unknown'
-            
-            await addVisit(req.params.url, req.ip, country, user.getDevice().name, user.getBrowser().name, user.getOS().name, new Date(Date.now()).toDateString())
+            let country = lookup ? lookup.country : undefined
+
+            let date = new Date(Date.now())
+            date.setSeconds(0,0)
+
+            await addVisit(req.params.url, {ip: req.ip, date: date.toUTCString(), country, device, browser, os, referer})
         }else{
             res.sendStatus(400)
         }

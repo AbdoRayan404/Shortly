@@ -6,26 +6,28 @@
 }
 
 body {
-    background-image: url(https://j.top4top.io/p_2504s68fp1.jpg);
+    background-color: #FFFFFF;
     background-size: cover;
     background-position-y: 60px;
 }
 
 
 nav {
-    background-color: #c03828;
+    background-color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     top: 0%;
     width: 100%;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+
 }
 
 .logo {
     text-decoration: none;
-    color: #1e2d42;
+    color: #2A9D8F;
     text-transform: uppercase;
     padding-left: 40px;
     font-size: 40px;
@@ -39,20 +41,120 @@ nav ul li {
 
 li a {
     text-decoration: none;
-    color: #1e2d42;
-    padding-right: 80px;
-    font-size: 30px;
+    color: #2A9D8F;
+    padding-right: 50px;
+    font-size: 32px;
 }
 
-.content h1 {
-    margin-top: 150px;
-    text-align: center;
+.content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 100vh;
+
+}
+
+.content .text {
+    margin-left: 90px;
+    width: fit-content;
+    margin-bottom: 140px;
+}
+
+.content .text h1 {
     font-size: 80px;
-    color: #c03828;
+    color: #2A9D8F;
+
 }
 
-.content h4 {
-    text-align: center;
+.content .text h4 {
+    font-size: 35px;
+    color: #2A9D8F;
+    width: 500px;
+}
+
+.text a p {
+    background: linear-gradient(to left, #2b6253, #2A9D8F 90%);
+    border-radius: 20px;
+    border: 1px solid;
+    margin-top: 10px;
+    transition: 0.5s;
     font-size: 40px;
-    color: #c03828;
+    cursor: pointer;
+    outline: none;
+    width: 200px;
+    border-color: transparent;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.text a {
+    text-decoration: none;
+}
+
+.text a p:hover {
+    background: transparent;
+    border: 1px solid;
+    color: black;
+}
+
+.content .image {
+    /* margin-top: 40px; */
+    margin-right: 40px;
+    margin-bottom: 200px;
+}
+
+.content .image img {
+    width: 650px;
+    height: 300px;
+    margin: 10px;
+    transition: 0.5s;
+
+}
+
+
+.content-two {
+    display: flex;
+    justify-content: center;
+    background-color: #2B6253;
+}
+
+.contact-us {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    flex-direction: column;
+    margin: 100px;
+    color: #FFFFFF;
+}
+
+input[type=text],
+input[type=email],
+textarea {
+    width: 400px;
+    height: 100%;
+    padding: 12px;
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: none;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    border-color: transparent;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #2A9D8F;
+    color: #FFFFFF;
+}
+
+.team-symbol a {
+    text-decoration: none;
+    color: black;
 }

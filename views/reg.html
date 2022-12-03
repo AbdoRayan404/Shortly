@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/reg.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Shortly</title>
+  </head>
+
+  <!-- Header -->
+
+  <body>
+    <div class="container">
+      <nav>
+        <a href="/" class="logo">SHORTLY</a>
+        <ul>
+          <li><a href="/">Home</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Register Box -->
+    <div class="form-box">
+      <!-- form header -->
+      <h1>Register</h1>
+      <!-- form elements group container -->
+      <form class="input-group" action="javascript:register();">
+        <input
+          type="email"
+          class="input-field"
+          id="email-input"
+          placeholder="example@gmail.com"
+        />
+        <input
+          type="password"
+          class="input-field"
+          id="password-input"
+          pattern=".{8,}"
+          title="Please write 8 characters password"
+          placeholder="Write a strong password"
+          required
+        />
+        <input
+          type="password"
+          class="input-field"
+          id="password-repeat-input"
+          pattern=".{8,}"
+          title="Please write 8 characters password"
+          placeholder="Rewrite your password"
+          required
+        />
+        <input type="checkbox" required />Accept the terms.
+        <button type="submit" class="submit-button">Sign-Up</button>
+        <p id="response-message"></p>
+        <div onclick="location.href='/login'" class="link-button">Already have an account? Sign-In</div>
+      </form>
+
+      <script src="src/reg.js"></script>
+    </div>
+  </body>
+</html>
