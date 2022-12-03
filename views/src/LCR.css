@@ -8,7 +8,7 @@
 
 body {
     background: linear-gradient(#2A9D8F, #2B6253);
-    height: 100vh;
+    height: 100%;
     background-size: cover;
     background-position-y: 60px;
 }
@@ -59,10 +59,6 @@ li a {
 .create_div {
     margin-top: 70px;
     margin-left: 20px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .create_button {
@@ -70,28 +66,65 @@ li a {
     height: 40px;
     width: 85px;
     font-size: 20px;
-    color: #1e2d42;
+    color: #FFFFFF;
     border-radius: 0 40px 40px 0px;
+    border: none;
     cursor: pointer;
 
+}
+
+.input-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .text-box {
     font-size: 20px;
     border-radius: 40px 0px 0px 40px;
-    border-right: none;
-    border-color: black;
+    border: none;
     width: 400px;
     height: 40px;
     padding: 0px 15px;
     outline: none;
 }
 
-.link {
-    display: inline-block;
-    border: 6px dotted #c03828;
+.links-group {
+    display: block;
+    background-color: #FFFFFF;
+    border-radius: 10px;
     margin-top: 25px;
-    padding: 10px;
-    color: white;
+    width: 650px;
+    padding: 15px;
+    color: black;
+    margin: 25px auto;
+    height: fit-content;
     visibility: hidden;
+}
+
+.links-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.links-group .monitor-button {
+    text-decoration: none;
+    color: #2A9D8F;
+    background-color: #cae6e2;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.original-link,
+.shortned-link {
+    font-size: 20px;
+}
+
+.shortned-link {
+    color: #3260D6;
+    margin-left: 150px;
 }
