@@ -119,12 +119,14 @@ li a {
     font-size: 14px;
 }
 
-.original-link,
-.shortned-link {
+.original-link {
     font-size: 20px;
+    cursor: pointer;
 }
 
-.shortned-link {
+.shortened-link {
     color: #3260D6;
-    margin-left: 150px;
+    margin: auto;
+    margin-right: 10px;
+    cursor: pointer;
 }
