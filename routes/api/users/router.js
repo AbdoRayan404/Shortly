@@ -7,6 +7,8 @@ import login from './login.js'
 import token from './token.js'
 import authenticate from './auth.js';
 import feedback from './feedback.js'
+import inspect from './inspect.js';
+import update from './update.js';
 
 //middlewares
 import validate from '../../middlewares/tokenValidate.js'
@@ -18,5 +20,7 @@ router
     .post('/token', postLimiter, token)
     .post('/feedback', postLimiter, feedback)
     .get('/auth', validate, authenticate)
+    .get('/inspect', validate, inspect)
+    .post('/update', validate, update)
 
 export default router;

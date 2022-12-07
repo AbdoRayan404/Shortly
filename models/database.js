@@ -14,11 +14,14 @@ export const pool = new pg.Pool({
 await pool.query(
     'CREATE TABLE IF NOT EXISTS users( '+
     'email varchar PRIMARY KEY, '+
+    'username varchar NOT NULL, '+
+    'profile_picture varchar NOT NULL DEFAULT \'https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg\', '+
     'password varchar NOT NULL, '+
     'salt varchar NOT NULL, '+
     'token varchar, '+
     'created_at date NOT NULL )'
     )
+
 await pool.query(
     'CREATE TABLE IF NOT EXISTS links( '+
     'shortened varchar NOT NULL PRIMARY KEY, '+

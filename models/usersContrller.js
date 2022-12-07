@@ -25,12 +25,24 @@ export async function inspectUser(email){
 /**
  * Registers new user in the users table
  * @param {String} email - user's email
+ * @param {String} username - user's profile username
  * @param {String} password - user's password
  * @param {String} salt - password salt
 */
-export async function createUser(email, password, salt){
-    await pool.query('INSERT INTO users(email, password, salt, created_at) VALUES($1, $2, $3, $4)', [email, password, salt, new Date(Date.now()).toDateString()])
+export async function createUser(email, username, password, salt){
+    await pool.query('INSERT INTO users(email, username, password, salt, created_at) VALUES($1, $2, $3, $4, $5)', [email, username, password, salt, new Date(Date.now()).toDateString()])
 }
+
+/**
+ * Updates user's profile data
+ * @param {String} email - user's email
+ * @param {String} username - user's username
+ * @param {String} profilePicture - user's profile picture
+*/
+export async function updateProfile(email, username, profilePicture){
+    await pool.query('UPDATE users SET username = $1, profile_picture = $2 WHERE email = $3', [username, profilePicture, email])
+}
+
 
 /**
  * Updates a specific user's token
