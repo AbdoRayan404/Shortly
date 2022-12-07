@@ -39,7 +39,7 @@ export async function createUser(email, username, password, salt){
  * @param {String} username - user's username
  * @param {String} profilePicture - user's profile picture
 */
-export async function updateProfile(email, username, profilePicture){
+export async function updateProfile(email, username, profilePicture = 'https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg'){
     await pool.query('UPDATE users SET username = $1, profile_picture = $2 WHERE email = $3', [username, profilePicture, email])
 }
 

@@ -126,6 +126,25 @@ describe('Users API route', ()=> {
             expect(response.statusCode).toBe(400)
         })
     })
+
+    describe('Profile endpoints (inspect, update)', ()=> {
+        test('Should response with 200 code, user object (inspect)', async ()=> {
+            const response = await request(app).get('/v2/api/users/inspect').set('Cookie', [randomAccount.token])
+
+            expect(response.statusCode).toBe(200)
+            expect(response.body.user.username).toBe(randomAccount.email.split('@')[0])
+        })
+
+        test('Should response with 200 code (update)', async ()=> {
+            const updateResponse = await request(app).post('/v2/api/users/update').set('Cookie', [randomAccount.token]).send({username: 'JestTestBOYYY'})
+            const inspectResponse = await request(app).get('/v2/api/users/inspect').set('Cookie', [randomAccount.token])
+
+
+            expect(updateResponse.statusCode).toBe(200)
+            expect(inspectResponse.statusCode).toBe(200)
+            expect(inspectResponse.body.user.username).toBe('JestTestBOYYY')
+        })
+    })
 })
 
 
@@ -135,7 +154,7 @@ describe('Links Related Tests', ()=> {
             const response = await request(app).post('/v2/api/links/create').set('Cookie', [randomAccount.token]).send({url: 'https://www.example.com'})
 
             randomAccount.shortened.push(response.body.shortened)
-
+            console.log(response.body)
             expect(response.statusCode).toBe(200)
             expect(response.body.shortened).not.toBeNaN()
         })

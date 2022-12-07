@@ -8,21 +8,20 @@ export default async function register(req, res){
     try{
         let isEmailValid = emailRegex.test(req.body.email)
         let isPasswordValid = passwordRegex.test(req.body.password)
-        let username = req.body.email.split('@')[0].split('')
-
-
-        if(username.length < 5){
-            let length = 5 - username.length
-            for(let i = 0; i < length; i++){
-                username.push(Math.floor(Math.random() * 9))
-            }
-            username = username.join('')
-        }
 
         if(!isEmailValid || !isPasswordValid){
             return res.status(400).send('Email or password is not valid')
         }
 
+        let username = req.body.email.split('@')[0].split('')
+        if(username.length < 5){
+            let length = 5 - username.length
+            for(let i = 0; i < length; i++){
+                username.push(Math.floor(Math.random() * 9))
+            }
+            
+        }
+        username = username.join('')
 
         let user = await inspectUser(req.body.email)
 
