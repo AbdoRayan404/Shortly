@@ -16,6 +16,7 @@ app.use('/v2', v2)
 
 //Source files
 app.use('/src', express.static('views/src'))
+app.use('/src/images', express.static('views/src/images'))
 
 //Views
 app.get('/', (req, res)=> res.sendFile(process.cwd() + '/views/landing.html'))
