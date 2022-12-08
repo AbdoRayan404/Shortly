@@ -2,6 +2,11 @@ let button = document.querySelector('.create_button');
 let input = document.querySelector('.text-box')
 let links_group = document.querySelector('.links-group')
 
+let profile_navbar = document.querySelector('.profile-navbar')
+let profile_thumbnail = document.querySelector('.user-picture')
+let profile_username = document.querySelector('.user-info h3')
+let profile_image = document.querySelector('.user-info img')
+
 async function create(){
     let response = await fetch(
             '/v2/api/links/create',
@@ -60,3 +65,24 @@ async function create(){
         links_group.appendChild(message)
     }
 }
+
+function openProfileNavbar(){
+    profile_navbar.classList.toggle('open-menu')
+}
+
+function logout(){
+    localStorage.removeItem('Refresh_Token')
+    window.location.href = '/v2/api/users/logout'
+}
+
+async function loadProfiledata(){
+    let response = await fetch('/v2/api/users/inspect')
+
+    let body = await response.json()
+
+    profile_image.src = body.user.profile_picture
+    profile_thumbnail.src = body.user.profile_picture
+    profile_username.innerText = body.user.username
+}
+
+loadProfiledata()

@@ -7,10 +7,28 @@ let subject_feedback = document.querySelector('#subject-feedback')
 let contact_us_form = document.querySelector('#contact-us-form')
 let contact_us_h1 = document.querySelector('#contact-us-h1')
 
-async function auth(){
-    let response = await fetch('/v2/api/users/auth')
+let profile_navbar = document.querySelector('.profile-navbar')
+let profile_thumbnail = document.querySelector('.user-picture')
+let profile_username = document.querySelector('.user-info h3')
+let profile_image = document.querySelector('.user-info img')
 
-    if(response.status == 202){
+
+function openProfileNavbar(){
+    profile_navbar.classList.toggle('open-menu')
+}
+
+function logout(){
+    localStorage.removeItem('Refresh_Token')
+    window.location.href = '/v2/api/users/logout'
+}
+
+async function loadProfiledata(){
+    let response = await fetch('/v2/api/users/inspect')
+
+
+    if(response.status == 200){
+        let body = await response.json()
+
         register_navbar.remove()
         login_navbar.remove()
         
@@ -23,8 +41,18 @@ async function auth(){
 
         application_li.appendChild(application_a)
         navbar.appendChild(application_li)
+
+
+        profile_image.src = body.user.profile_picture
+        profile_thumbnail.src = body.user.profile_picture
+        profile_username.innerText = body.user.username
+    }else{
+        profile_thumbnail.remove()
+        profile_navbar.remove()
     }
 }
+
+loadProfiledata()
 
 
 async function sendFeedback(){
@@ -47,5 +75,3 @@ async function sendFeedback(){
         contact_us_h1.innerText = 'Feedback were sent Successfully !'
     }
 }
-
-auth()

@@ -20,7 +20,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     top: 0%;
     width: 100%;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
@@ -36,9 +36,14 @@ nav {
     font-weight: 900;
 }
 
+nav ul {
+    width: 100%;
+    text-align: right;
+}
+
 nav ul li {
-    list-style-type: none;
     display: inline-block;
+    list-style: none;
 }
 
 li a {
@@ -129,4 +134,87 @@ li a {
     margin: auto;
     margin-right: 10px;
     cursor: pointer;
+}
+
+.user-picture {
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 50px;
+}
+
+.profile-navbar {
+    position: absolute;
+    top: 11%;
+    right: 3%;
+    width: 320px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.3s;
+}
+
+.profile-navbar.open-menu {
+    max-height: 400px;
+}
+
+.profile {
+    background: white;
+    padding: 20px;
+    margin: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info h3 {
+    font-weight: 500;
+}
+
+.user-info img {
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.profile hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: #ccc;
+    margin: 15px 0 10px;
+}
+
+.profile-navbar-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    margin: 12px 0;
+}
+
+.profile-navbar-link p {
+    width: 100%;
+}
+
+.profile-navbar-link img {
+    width: 40px;
+    background: #e5e5e5;
+    border-radius: 50%;
+    padding: 0px;
+    margin-right: 15px;
+}
+
+.profile-navbar-link span {
+    font-size: 22px;
+}
+
+.profile-navbar-link:hover span {
+    transform: translate(5px);
+}
+
+.profile-navbar-link:hover p {
+    font-weight: 600;
 }
