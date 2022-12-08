@@ -9,6 +9,7 @@ import authenticate from './auth.js';
 import feedback from './feedback.js'
 import inspect from './inspect.js';
 import update from './update.js';
+import logout from './logout.js';
 
 //middlewares
 import validate from '../../middlewares/tokenValidate.js'
@@ -22,5 +23,6 @@ router
     .get('/auth', validate, authenticate)
     .get('/inspect', validate, inspect)
     .post('/update', validate, update)
+    .get('/logout', logout)
 
 export default router;
