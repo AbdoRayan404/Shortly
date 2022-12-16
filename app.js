@@ -11,8 +11,8 @@ app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
 
 // //Routes
-import v2 from './routes/v2.js';
-app.use('/v2', v2)
+import v1 from './routes/v1.js';
+app.use('/v1', v1)
 
 //Source files
 app.use('/src', express.static('views/src'))

@@ -6,7 +6,7 @@ let response_message = document.querySelector('#response-message')
 
 async function login(){
     let response = await fetch(
-        '/v2/api/users/login', 
+        '/v1/api/users/login', 
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},

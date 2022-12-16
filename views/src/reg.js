@@ -6,7 +6,7 @@ let response_message = document.querySelector('#response-message')
 
 async function register(){
     let response = await fetch(
-        '/v2/api/users/register', 
+        '/v1/api/users/register', 
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},

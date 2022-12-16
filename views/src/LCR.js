@@ -9,7 +9,7 @@ let profile_image = document.querySelector('.user-info img')
 
 async function create(){
     let response = await fetch(
-            '/v2/api/links/create',
+            '/v1/api/links/create',
             {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -72,11 +72,11 @@ function openProfileNavbar(){
 
 function logout(){
     localStorage.removeItem('Refresh_Token')
-    window.location.href = '/v2/api/users/logout'
+    window.location.href = '/v1/api/users/logout'
 }
 
 async function loadProfiledata(){
-    let response = await fetch('/v2/api/users/inspect')
+    let response = await fetch('/v1/api/users/inspect')
 
     let body = await response.json()
 

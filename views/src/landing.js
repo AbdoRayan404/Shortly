@@ -19,11 +19,11 @@ function openProfileNavbar(){
 
 function logout(){
     localStorage.removeItem('Refresh_Token')
-    window.location.href = '/v2/api/users/logout'
+    window.location.href = '/v1/api/users/logout'
 }
 
 async function loadProfiledata(){
-    let response = await fetch('/v2/api/users/inspect')
+    let response = await fetch('/v1/api/users/inspect')
 
 
     if(response.status == 200){
@@ -57,7 +57,7 @@ loadProfiledata()
 
 async function sendFeedback(){
     let response = await fetch(
-        '/v2/api/users/feedback',
+        '/v1/api/users/feedback',
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
