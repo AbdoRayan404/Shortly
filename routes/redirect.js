@@ -1,30 +1,30 @@
 import { UAParser } from 'ua-parser-js';
 import geoip from 'geoip-country';
-import {inspectLink, addVisit} from '../models/linksController.js';
+import { inspectLinkByCode } from '../models/linksController.js';
 
 export default async function redirect(req, res){
     try{
-        let link = await inspectLink(req.params.url)
+        let link = await inspectLinkByCode(req.params.url)
 
         if(link){
             res.redirect(link.original)
 
-            let userAgent = new UAParser(req.headers['user-agent']);
-            let device = userAgent.getDevice().name
-            let browser = userAgent.getBrowser().name
-            let os = userAgent.getOS().name
+            const userAgent = new UAParser(req.headers['user-agent']);
+            const device = userAgent.getDevice().name
+            const browser = userAgent.getBrowser().name
+            const os = userAgent.getOS().name
 
-            let referer = req.headers.referer
+            const referer = req.headers.referer
 
-            let lookup = geoip.lookup(req.ip);
-            let country = lookup ? lookup.country : undefined
+            const lookup = geoip.lookup(req.ip);
+            const country = lookup ? lookup.country : undefined
 
-            let date = new Date(Date.now())
-            date.setSeconds(0,0)
+            const currentDate = new Date(Date.now())
+            currentDate.setSeconds(0,0)
 
-            await addVisit(req.params.url, {ip: req.ip, date: date.toUTCString(), country, device, browser, os, referer})
+            await addVisit(req.params.url, {ip: req.ip, date: currentDate.toUTCString(), country, device, browser, os, referer})
         }else{
-            res.sendStatus(400)
+            res.sendStatus(404)
         }
     }catch(err){
         console.log(err)

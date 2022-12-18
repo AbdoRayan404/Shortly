@@ -15,7 +15,7 @@ export async function createLink(userEmail, shortened, original){
  * @param {String} shortened - the shortened code
  * @param {Object} - link object
 */
-export async function inspectLink(shortened){
+export async function inspectLinkByCode(shortened){
     const link = await pool.query('SELECT * FROM links WHERE shortened = $1', [shortened])
 
     return link.rows[0]
@@ -40,7 +40,7 @@ export async function inspectLinksByEmail(email){
  * @param {String} shortened - shortened url code
  * @param {Object} - contains statistics array & timestamps array
 */
-export async function inspectVisits(shortened){
+export async function inspectLinkVisitsByCode(shortened){
     const statistics = await pool.query(
         'SELECT \'os\' AS Type, os AS Value, count(*) AS visits from visits WHERE link = $1 GROUP BY os '+
         'UNION ALL '+
@@ -70,11 +70,7 @@ export async function inspectVisits(shortened){
 export async function doesOwn(email, shortened){
     const link = await pool.query('SELECT original FROM links WHERE owned_by = $1 AND shortened = $2', [email, shortened])
 
-    if(link.rowCount == 1){
-        return true
-    }else{
-        return false
-    } 
+    return link.rowsCount == 1
 }
 /**
  * Inserts a visit to a specific link in the visits table

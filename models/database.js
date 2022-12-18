@@ -17,9 +17,8 @@ await pool.query(
     'username varchar NOT NULL, '+
     'profile_picture varchar NOT NULL DEFAULT \'https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg\', '+
     'password varchar NOT NULL, '+
-    'salt varchar NOT NULL, '+
     'token varchar, '+
-    'created_at date NOT NULL )'
+    'created_at timestamp NOT NULL )'
     )
 
 await pool.query(

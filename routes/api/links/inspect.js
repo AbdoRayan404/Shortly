@@ -2,7 +2,7 @@ import { inspectLinksByEmail } from "../../../models/linksController.js";
 
 export default async function inspect(req, res){
     try{
-        let links = await inspectLinksByEmail(req.body.decoded.email)
+        const links = await inspectLinksByEmail(res.locals.jwtDecoded.email)
 
         res.json({ links })
     }catch(err){

@@ -3,19 +3,11 @@ import randomstring from 'randomstring';
 
 export default async function create(req, res){
     try{
-        if(/^((https:\/\/)|(www\.)).*\..*$/g.test(req.body.url) == false){
-            return res.sendStatus(400)
-        }
+        const shortenedUrlCode = randomstring.generate(5)
 
-        if(/^www\..*\..*$/.test(req.body.url)){
-            req.body.url = `https://${req.body.url}`
-        }
+        await createLink(res.locals.jwtDecoded.email, shortenedUrlCode, req.body.url)
 
-        let shortened = randomstring.generate(5)
-
-        await createLink(req.body.decoded.email, shortened, req.body.url)
-
-        res.json({ shortened: shortened, original: req.body.url })
+        res.json({ shortened: shortenedUrlCode, original: req.body.url })
     }catch(err){
         console.log(err)
         res.sendStatus(500)

@@ -1,4 +1,4 @@
-import { inspectToken } from '../../../models/usersContrller.js';
+import { inspectUserByToken } from '../../../models/usersContrller.js';
 import jwt from 'jsonwebtoken';
 
 /**
@@ -12,15 +12,16 @@ export default async function token(req, res){
             return res.status(400).json({ error: 'token is invalid' })
         }
 
-        let token = await inspectToken(req.body.token)
+        let token = await inspectUserByToken(req.body.token)
 
         if(!token){
             return res.status(400).json({ error: 'token is invalid, please relogin'})
         }
 
-        let newToken = jwt.sign({ email: verified.email, password: verified.password }, process.env.JWT_SECRET, {algorithm: 'HS256', expiresIn: '1d'})
+        let newToken = jwt.sign({ email: verified.email }, process.env.JWT_SECRET, {algorithm: 'HS256', expiresIn: '1d'})
 
-        res.setHeader('set-cookie', [`JWT_TOKEN=${newToken}; max-age=86400; httponly; samesite=lax; path=/`])
+        res.cookie('JWT_TOKEN', newToken, {httpOnly: true, secure: true})
+
         res.sendStatus(200)
     }catch(err){
         console.log(err)

@@ -3,26 +3,25 @@ const router = express.Router()
 
 //endpoints
 import register from './register.js'
-import login from './login.js'
-import token from './token.js'
-import authenticate from './auth.js';
+import createToken from './createToken.js'
+import refereshToken from './refreshToken.js'
 import feedback from './feedback.js'
 import inspect from './inspect.js';
-import update from './update.js';
+import updateProfile from './updateProfile.js';
 import logout from './logout.js';
 
 //middlewares
-import validate from '../../middlewares/tokenValidate.js'
+import { validator, JWTValidator, loginCredentialsValidator, registerInputValidator  } from '../../middlewares/validators.js';
 import { postLimiter } from '../../middlewares/rateLimiter.js'
 
 router
-    .post('/register', postLimiter, register)
-    .post('/login', postLimiter, login)
-    .post('/token', postLimiter, token)
+    .post('/register', postLimiter, validator(registerInputValidator), register)
+    .post('/login', postLimiter, validator(loginCredentialsValidator), createToken)
+    .post('/token', postLimiter, refereshToken)
     .post('/feedback', postLimiter, feedback)
-    .get('/auth', validate, authenticate)
-    .get('/inspect', validate, inspect)
-    .post('/update', validate, update)
+    .post('/profile/update', validator(JWTValidator), updateProfile)
+    .get('/profile', validator(JWTValidator), inspect)
     .get('/logout', logout)
+
 
 export default router;

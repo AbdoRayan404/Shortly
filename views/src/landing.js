@@ -23,7 +23,7 @@ function logout(){
 }
 
 async function loadProfiledata(){
-    let response = await fetch('/v1/api/users/inspect')
+    let response = await fetch('/v1/api/users/profile')
 
 
     if(response.status == 200){

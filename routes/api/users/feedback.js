@@ -1,8 +1,8 @@
-import { addFeedback } from "../../../models/usersContrller.js";
+import { createFeedback } from "../../../models/usersContrller.js";
 
 export default async function feedback(req, res){
     try{
-        await addFeedback(req.body.name, req.body.email, req.body.subject)
+        await createFeedback(req.body.name, req.body.email, req.body.subject)
 
         res.sendStatus(200)
     }catch(err){

@@ -7,11 +7,11 @@ import inspect from './inspect.js'
 import visits from './visits.js'
 
 //middlewares
-import jwtValidate from '../../middlewares/tokenValidate.js'
+import { validator, JWTValidator, UrlValidator } from '../../middlewares/validators.js';
 
 router
-    .post('/create', jwtValidate, create)
-    .get('/inspect', jwtValidate, inspect)
-    .post('/visits', jwtValidate, visits)
+    .post('/create', validator(JWTValidator), validator(UrlValidator), create)
+    .post('/visits', validator(JWTValidator), visits)
+    .get('/inspect', validator(JWTValidator), inspect)
 
 export default router;

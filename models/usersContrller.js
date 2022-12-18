@@ -5,10 +5,10 @@ import {pool} from './database.js';
  * @param {String} token - user's token
  * @param {Object} - user object
 */
-export async function inspectToken(token){
-    let data = await pool.query('SELECT * FROM users WHERE token = $1', [token])
+export async function inspectUserByToken(token){
+    const user = await pool.query('SELECT * FROM users WHERE token = $1', [token])
 
-    return data.rows[0]
+    return user.rows[0]
 }
 
 /**
@@ -16,7 +16,7 @@ export async function inspectToken(token){
  * @param {String} email - email of the account
  * @param {Object} - user object
 */
-export async function inspectUser(email){
+export async function inspectUserByEmail(email){
     const user = await pool.query('SELECT * FROM users WHERE email = $1', [email])
 
     return user.rows[0]
@@ -27,17 +27,18 @@ export async function inspectUser(email){
  * @param {String} email - user's email
  * @param {String} username - user's profile username
  * @param {String} password - user's password
- * @param {String} salt - password salt
 */
-export async function createUser(email, username, password, salt){
-    await pool.query('INSERT INTO users(email, username, password, salt, created_at) VALUES($1, $2, $3, $4, $5)', [email, username, password, salt, new Date(Date.now()).toDateString()])
+export async function createUser(email, username, password){
+    const currentDate = new Date(Date.now())
+    currentDate.setSeconds(0, 0)
+
+    await pool.query('INSERT INTO users(email, username, password, created_at) VALUES($1, $2, $3, $4)', [email, username, password, currentDate.toUTCString()])
 }
 
 /**
  * Updates user's profile data
  * @param {String} email - user's email
  * @param {String} username - user's username
- * @param {String} profilePicture - user's profile picture
 */
 export async function updateProfile(email, username, profilePicture = 'https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg'){
     await pool.query('UPDATE users SET username = $1, profile_picture = $2 WHERE email = $3', [username, profilePicture, email])
@@ -59,6 +60,6 @@ export async function updateToken(email, token){
  * @param {String} email - email of the feedback sender
  * @param {String} subject - feedback subject
 */
-export async function addFeedback(name, email, subject){
+export async function createFeedback(name, email, subject){
     await pool.query('INSERT INTO feedbacks(name, email, subject) VALUES($1, $2, $3)', [name, email, subject])
 }
