@@ -32,6 +32,7 @@ nav {
     padding-left: 40px;
     font-size: 40px;
     font-weight: 900;
+    display: inline-flex;
 }
 
 nav ul {
@@ -43,6 +44,7 @@ nav ul li {
     display: inline-block;
     list-style: none;
 }
+
 li a {
     text-decoration: none;
     color: #2A9D8F;
@@ -221,6 +223,7 @@ button:hover {
     text-decoration: none;
     color: #525252;
     margin: 12px 0;
+    cursor: pointer;
 }
 
 .profile-navbar-link p {
@@ -245,4 +248,9 @@ button:hover {
 
 .profile-navbar-link:hover p {
     font-weight: 600;
+}
+
+.support-img {
+    height: 50%;
+    margin-top: 100px;
 }
