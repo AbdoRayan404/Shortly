@@ -8,8 +8,6 @@
 
 body {
   background-color: #FFFFFF;
-  background-size: cover;
-  background-position-y: 60px;
 }
 
 
@@ -33,6 +31,7 @@ nav {
   padding-left: 40px;
   font-size: 40px;
   font-weight: 900;
+  display: inline-flex;
 }
 
 nav ul li {
