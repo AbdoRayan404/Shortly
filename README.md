@@ -1,7 +1,7 @@
 <h1 align="center">Shortly</h1>
 <p align="center">Shortly is a Link Management Website, Where you can create and monitor in a matter of seconds easily.</p>
 
-<img src="https://user-images.githubusercontent.com/44875260/207918643-32797792-d095-4165-be51-e32af49e39bc.png"/>
+<img src="https://user-images.githubusercontent.com/44875260/209403228-774c8d79-ee98-474b-b839-1e8c408b3df7.png"/>
 
 ## Run Locally
 1. git clone
