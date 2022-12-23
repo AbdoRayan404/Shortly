@@ -8,9 +8,7 @@
 
 body {
     background: linear-gradient(#2A9D8F, #2B6253);
-    height: 100%;
-    background-size: cover;
-    background-position-y: 60px;
+    background-attachment: fixed;
 }
 
 
@@ -112,6 +110,12 @@ li a {
     justify-content: space-between;
     align-items: center;
     margin: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+
+.links-container:last-child {
+    border-bottom: none;
 }
 
 .links-group .monitor-button {
@@ -193,6 +197,8 @@ li a {
     text-decoration: none;
     color: #525252;
     margin: 12px 0;
+    cursor: pointer;
+
 }
 
 .profile-navbar-link p {
