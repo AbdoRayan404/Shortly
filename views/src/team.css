@@ -5,12 +5,11 @@
     font-family: 'Oswald', sans-serif;
 }
 
-
 body {
     background-color: #FFFFFF;
 }
 
-
+/* header start */
 nav {
     background-color: #FFFFFF;
     display: flex;
@@ -21,7 +20,6 @@ nav {
     top: 0%;
     width: 100%;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-
 }
 
 .logo {
@@ -46,34 +44,24 @@ li a {
     font-size: 32px;
 }
 
+/* header end */
+
+/* content section start*/
 .content-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-div .IMG-ONE,
-.IMG-TWO,
-.IMG-THREE,
-p {
-    color: black;
-    font-size: 20px;
-    font-weight: 500;
-    margin-top: 15px;
+    justify-content: space-around;
     text-align: center;
+    margin-top: 100px;
 }
 
 img {
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
-
 }
 
 .content-container a {
     background-image: linear-gradient(purple, purple);
     background-size: 1%;
-
     transition: 0.5s;
-
 }
 
 .IMG-ONE a:hover {
@@ -86,25 +74,21 @@ img {
     background-size: 1%;
 }
 
-.IMG-THREE {
-    width: 404.99px;
-}
-
-.IMG-THREE img {
-    width: calc(158%/2);
-}
-
 .IMG-THREE a:hover {
     background-image: linear-gradient(green, green);
     background-size: 1%;
 }
 
+/* content section end*/
+
+/* github - footer start */
 .social-content {
     margin: 33px 0px;
     text-align: center;
-
 }
 
 .social-content div {
     color: black;
 }
+
+/* github - footer end */
