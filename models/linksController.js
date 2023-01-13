@@ -7,7 +7,10 @@ import {pool} from './database.js';
  * @param {String} original - the original version of the url
 */
 export async function createLink(userEmail, shortened, original){
-    await pool.query('INSERT INTO links(owned_by, shortened, original, created_at) VALUES($1, $2, $3, $4)', [userEmail, shortened, original, new Date(Date.now()).toDateString()])
+    const currentDate = new Date(Date.now())
+    currentDate.setSeconds(0,0)
+
+    await pool.query('INSERT INTO links(owned_by, shortened, original, created_at) VALUES($1, $2, $3, $4)', [userEmail, shortened, original, currentDate.toUTCString()])
 }
 
 /**

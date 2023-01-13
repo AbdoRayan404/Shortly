@@ -26,7 +26,7 @@ await pool.query(
     'shortened varchar NOT NULL PRIMARY KEY, '+
     'original varchar NOT NULL, '+
     'owned_by varchar REFERENCES users(email) NOT NULL, '+
-    'created_at date NOT NULL )'
+    'created_at timestamp NOT NULL )'
 )
 
 await pool.query(
