@@ -1,6 +1,6 @@
 import { UAParser } from 'ua-parser-js';
 import geoip from 'geoip-country';
-import { inspectLinkByCode } from '../models/linksController.js';
+import { inspectLinkByCode, addVisit } from '../models/linksController.js';
 
 export default async function redirect(req, res){
     try{

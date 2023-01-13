@@ -43,9 +43,9 @@ async function loadProfiledata(){
         navbar.appendChild(application_li)
 
 
-        profile_image.src = body.user.profile_picture
-        profile_thumbnail.src = body.user.profile_picture
-        profile_username.innerText = body.user.username
+        profile_image.src = body.profile_picture
+        profile_thumbnail.src = body.profile_picture
+        profile_username.innerText = body.username
     }else{
         profile_thumbnail.remove()
         profile_navbar.remove()

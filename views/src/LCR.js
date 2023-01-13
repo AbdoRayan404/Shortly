@@ -32,12 +32,10 @@ async function create(){
         original_link.className = 'original-link'
         original_link.innerText = `${input.value.split('').splice(0, 30).join('')}...`
 
-        let shortened_link = document.createElement('span')
+        let shortened_link = document.createElement('a')
         shortened_link.className = 'shortened-link'
         shortened_link.innerText = `${window.location.origin}/s/${body.shortened}`
-        shortened_link.onclick = (x)=> {
-            navigator.clipboard.writeText(`${window.location.origin}/s/${body.shortened}`)
-        }
+        shortened_link.href = `${window.location.origin}/s/${body.shortened}`
 
         let monitor_button = document.createElement('a')
         monitor_button.className = 'monitor-button'
@@ -76,13 +74,13 @@ function logout(){
 }
 
 async function loadProfiledata(){
-    let response = await fetch('/v1/api/users/inspect')
+    let response = await fetch('/v1/api/users/profile')
 
     let body = await response.json()
 
-    profile_image.src = body.user.profile_picture
-    profile_thumbnail.src = body.user.profile_picture
-    profile_username.innerText = body.user.username
+    profile_image.src = body.profile_picture
+    profile_thumbnail.src = body.profile_picture
+    profile_username.innerText = body.username
 }
 
 loadProfiledata()
